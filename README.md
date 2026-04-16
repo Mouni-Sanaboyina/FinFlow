@@ -1,5 +1,5 @@
 # FinFlow — AI Loan Sales Assistant
-### Cognizant Technoverse Hackathon 2026 | Banking · Lending & Credit
+# Banking · Lending & Credit
 
 A multi-agent AI-powered loan sales assistant built for NBFCs. Uses Claude claude-sonnet-4-20250514 as the AI backbone with a 5-agent orchestration system.
 
@@ -83,6 +83,3 @@ Greeting → Requirement Gathering → KYC/PAN Verification
 - ✅ Real-time loan journey progress tracker
 - ✅ Dark-themed luxury fintech UI
 
-## Team
-Built for Cognizant Technoverse Hackathon 2026
-Domain: Banking | Theme: Lending & Credit
