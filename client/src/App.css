@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  background: #040a14;
+  color: #c8d8f0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ── Layout ── */
+.app-shell {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  background: #040a14;
+}
+
+/* ── Sidebar ── */
+.sidebar {
+  width: 280px;
+  flex-shrink: 0;
+  background: #060d18;
+  border-right: 1px solid #1a2540;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+.sidebar::-webkit-scrollbar { display: none; }
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 20px 20px;
+  border-bottom: 1px solid #1a2540;
+}
+.logo-mark {
+  width: 42px; height: 42px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #0f2d60, #1a5fa8);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 800; color: #F5D07A;
+  letter-spacing: 0.05em; flex-shrink: 0;
+  box-shadow: 0 4px 14px #1a5fa844;
+}
+.logo-name {
+  font-size: 17px; font-weight: 700;
+  color: #e8f0fe; margin: 0;
+  font-family: 'DM Serif Display', serif;
+}
+.logo-tag {
+  font-size: 10px; color: #4a5f80; margin: 1px 0 0;
+  text-transform: uppercase; letter-spacing: 0.08em;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  padding: 16px 20px;
+  border-top: 1px solid #1a2540;
+}
+.sidebar-footer p {
+  font-size: 10px; color: #2a3a55;
+  text-align: center; line-height: 1.8;
+}
+
+/* ── Main Area ── */
+.main-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Subtle grid background */
+.main-area::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(#1a2540 1px, transparent 1px),
+    linear-gradient(90deg, #1a2540 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: rgba(6, 13, 24, 0.9);
+  border-bottom: 1px solid #1a2540;
+  backdrop-filter: blur(10px);
+  position: relative; z-index: 1;
+}
+.topbar-title {
+  font-size: 18px; font-weight: 700; color: #e8f0fe;
+  font-family: 'DM Serif Display', serif;
+}
+.topbar-sub {
+  font-size: 11px; color: #4a5f80; margin-top: 2px;
+}
+.topbar-badge {
+  display: flex; align-items: center; gap: 6px;
+  padding: 4px 12px; border-radius: 20px;
+  background: #0a1f10; border: 1px solid #1a4a2a;
+  font-size: 11px; color: #2ECC71; font-weight: 600;
+}
+.live-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #2ECC71;
+  animation: pulse-dot 1.5s ease-in-out infinite;
+}
+
+/* ── Scrollbars ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #1e2f4a; border-radius: 2px; }
+
+/* ── Animations ── */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); opacity: 0.4; }
+  50%       { transform: translateY(-6px); opacity: 1; }
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.8); }
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 4px 20px #C9A84C44; }
+  50%       { box-shadow: 0 4px 30px #C9A84C88; }
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Print styles for sanction letter */
+@media print {
+  .app-shell { display: none; }
+  .sanction-print { display: block !important; }
+}
