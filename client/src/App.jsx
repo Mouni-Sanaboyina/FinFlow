@@ -30,8 +30,7 @@ function AppInner() {
 
         {/* Footer */}
         <div className="sidebar-footer">
-          <p>Powered by Claude AI</p>
-          <p>Cognizant Technoverse 2026</p>
+          <p>Powered by Mounika Sanaboyina </p>
         </div>
       </aside>
 

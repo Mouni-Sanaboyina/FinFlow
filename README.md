@@ -1,13 +1,24 @@
 # FinFlow — AI Loan Sales Assistant
+
 # Banking · Lending & Credit
 
-A multi-agent AI-powered loan sales assistant built for NBFCs. Uses Claude claude-sonnet-4-20250514 as the AI backbone with a 5-agent orchestration system.
+FinFlow is a multi-agent AI-powered loan sales assistant designed for NBFCs and digital lending platforms. The system automates the complete lending journey, from requirement gathering and KYC verification to underwriting, decision explanation, and sanction letter generation.
+
+Built using React, Node.js, Express, and Azure AI Foundry GPT-4.1-mini.
+
+---
+
+## Overview
+
+FinFlow simulates how modern AI-powered lending systems can streamline customer onboarding and loan processing through specialized AI agents working together under a central orchestrator.
+
+The application provides a conversational experience while maintaining structured workflows commonly used in banking and lending operations.
 
 ---
 
 ## Architecture
 
-```
+```text
 User ──► Master Orchestrator Agent
               │
     ┌─────────┼──────────────────────┐
@@ -16,70 +27,139 @@ User ──► Master Orchestrator Agent
  Agent      Agent        Agent         Agent        Agent
 ```
 
-## Agent Roles
+---
 
-| Agent | Role |
-|-------|------|
-| **Master Agent** | Orchestrates flow, decides next agent |
-| **Sales Agent** | Gathers loan requirements conversationally |
-| **Verification Agent** | DPDP consent + PAN KYC validation |
-| **Underwriting Agent** | Credit score simulation + approval decision + confidence score |
-| **Explanation Agent** | Plain-language explanation of underwriting decision |
-| **Sanction Agent** | Generates formal bank-style sanction letter |
+## Agent Responsibilities
 
-## Tech Stack
+| Agent              | Responsibility                                      |
+| ------------------ | --------------------------------------------------- |
+| Master Agent       | Controls workflow and coordinates all agents        |
+| Sales Agent        | Collects customer and loan requirements             |
+| Verification Agent | Handles PAN validation and consent collection       |
+| Underwriting Agent | Evaluates eligibility and generates risk assessment |
+| Explanation Agent  | Explains decisions in customer-friendly language    |
+| Sanction Agent     | Generates professional loan sanction letters        |
 
-- **Frontend**: React 18, Axios, React Markdown
-- **Backend**: Node.js, Express
-- **AI**: Anthropic Claude claude-sonnet-4-20250514 (via @anthropic-ai/sdk)
-- **State**: In-memory session store
+---
 
-## Setup
+## Features
 
-### 1. Clone & Install
+* Multi-agent AI orchestration
+* Conversational loan application flow
+* PAN card format validation
+* DPDP consent workflow
+* Credit score simulation
+* Risk-based underwriting decisions
+* Confidence score generation
+* EMI calculation support
+* Automated sanction letter creation
+* Real-time loan journey tracking
+* Modern fintech-style user interface
+
+---
+
+## Loan Journey
+
+```text
+Welcome
+   ↓
+Requirement Gathering
+   ↓
+PAN Verification
+   ↓
+Underwriting Assessment
+   ↓
+Decision Explanation
+   ↓
+Loan Sanction Letter
+```
+
+---
+
+## Technology Stack
+
+### Frontend
+
+* React 18
+* Axios
+* React Markdown
+* CSS3
+
+### Backend
+
+* Node.js
+* Express.js
+
+### AI Layer
+
+* Azure AI Foundry
+* GPT-4.1-mini
+* Multi-Agent Architecture
+
+### State Management
+
+* In-Memory Session Store
+
+---
+
+## Installation
+
+### Clone Repository
 
 ```bash
-git clone <repo>
+git clone <repository-url>
 cd loan-sales-assistant
 npm run install:all
 ```
 
-### 2. Configure Environment
+### Configure Environment
 
-```bash
-cp .env.example .env
-# Add your ANTHROPIC_API_KEY to .env
+Create a `.env` file:
+
+```env
+AZURE_OPENAI_API_KEY=your_api_key
+AZURE_OPENAI_ENDPOINT=https://your-resource.services.ai.azure.com/openai/v1
+AZURE_OPENAI_DEPLOYMENT_NAME=gpt-4.1-mini
+PORT=5000
 ```
 
-### 3. Run Development
+### Run Application
+
+Backend:
 
 ```bash
-# Terminal 1 — Backend
 npm run dev:server
+```
 
-# Terminal 2 — Frontend
+Frontend:
+
+```bash
 npm run dev:client
 ```
 
-App runs at: http://localhost:3000  
-API runs at: http://localhost:5000
+Application URLs:
 
-## Loan Journey Flow
-
-```
-Greeting → Requirement Gathering → KYC/PAN Verification
-        → Underwriting → Decision → Sanction Letter
+```text
+Frontend: http://localhost:3000
+Backend : http://localhost:5000
 ```
 
-## Key Features
+---
 
-- ✅ Multi-agent orchestration with smooth handoffs
-- ✅ PAN format validation (ABCDE1234F)
-- ✅ DPDP Act 2023 consent flow
-- ✅ Credit score simulation (300–900)
-- ✅ Confidence score (0–100%) on decisions
-- ✅ EMI calculator (24/36/48 months)
-- ✅ Professional sanction letter generation
-- ✅ Real-time loan journey progress tracker
-- ✅ Dark-themed luxury fintech UI
+## Future Enhancements
 
+* Aadhaar Verification Integration
+* Credit Bureau API Integration
+* Banking Statement Analysis
+* OCR-Based Document Verification
+* Loan Product Recommendation Engine
+* Retrieval-Augmented Generation (RAG)
+* Persistent Database Storage
+
+---
+
+## Author
+
+**Mounika Sanaboyina**
+
+Focused on AI Applications, Full-Stack Development, and Intelligent Multi-Agent Systems.

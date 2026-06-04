@@ -1,51 +1,56 @@
-const OpenAI = require('openai');
+const OpenAI = require("openai");
 
 const client = new OpenAI({
-  apiKey: process.env.BYTEZ_API_KEY,
-  baseURL: 'https://api.bytez.com/models/v2/openai/v1',
-  defaultHeaders: {
-    'Authorization': `Key ${process.env.BYTEZ_API_KEY}`,
-  },
+  apiKey: process.env.AZURE_OPENAI_API_KEY,
+  baseURL: process.env.AZURE_OPENAI_ENDPOINT,
 });
 
-// Smaller model = faster cold start
-const MODEL = 'Qwen/Qwen2.5-3B-Instruct'; // A capable model available on Bytez
-
-// Simple single-turn call: system prompt + user content → text response
 async function ask(systemPrompt, userContent) {
-  const response = await client.chat.completions.create({
-    model: MODEL,
-    max_tokens: 1000,
-    messages: [
-      { role: 'system', content: systemPrompt },
-      { role: 'user', content: userContent },
-    ],
-  });
-  return response.choices[0].message.content.trim();
+  try {
+    const response = await client.chat.completions.create({
+      model: process.env.AZURE_OPENAI_DEPLOYMENT_NAME,
+      messages: [
+        { role: "system", content: systemPrompt },
+        { role: "user", content: userContent }
+      ],
+      temperature: 0.7,
+      max_tokens: 1000
+    });
+
+    return response.choices[0].message.content.trim();
+  } catch (error) {
+    console.error("===== OPENAI ERROR =====");
+    console.error(error);
+    throw error;
+  }
 }
 
-// Multi-turn call with full conversation history
-// history = [{role:'user'|'model', parts:[{text:'...'}]}]  (Gemini format — we convert it)
 async function chat(systemPrompt, history, latestUserMessage) {
-  // Convert from Gemini format ({role:'model', parts:[{text:'...'}]})
-  // to OpenAI format ({role:'assistant', content:'...'})
-  const convertedHistory = history.map(m => ({
-    role: m.role === 'model' ? 'assistant' : 'user',
-    content: m.parts?.[0]?.text ?? m.content ?? '',
-  }));
+  try {
+    const convertedHistory = history.map((m) => ({
+      role: m.role === "model" ? "assistant" : "user",
+      content: m.parts?.[0]?.text ?? m.content ?? "",
+    }));
 
-  const messages = [
-    { role: 'system', content: systemPrompt },
-    ...convertedHistory,
-    { role: 'user', content: latestUserMessage },
-  ];
+    const messages = [
+      { role: "system", content: systemPrompt },
+      ...convertedHistory,
+      { role: "user", content: latestUserMessage }
+    ];
 
-  const response = await client.chat.completions.create({
-    model: MODEL,
-    max_tokens: 1000,
-    messages,
-  });
-  return response.choices[0].message.content.trim();
+    const response = await client.chat.completions.create({
+      model: process.env.AZURE_OPENAI_DEPLOYMENT_NAME,
+      messages,
+      temperature: 0.7,
+      max_tokens: 1000
+    });
+
+    return response.choices[0].message.content.trim();
+  } catch (error) {
+    console.error("===== OPENAI ERROR =====");
+    console.error(error);
+    throw error;
+  }
 }
 
 module.exports = { ask, chat };
