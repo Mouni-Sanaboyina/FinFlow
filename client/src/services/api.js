@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: 'http://localhost:5000/api',
+  baseURL: 'https://finflow-production-0ead.up.railway.app/api',
 });
 
 export const startSession = () => API.post('/chat/start');
