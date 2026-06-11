@@ -448,34 +448,6 @@ Returns API service status.
 
 ---
 
-# Screenshots
-
-## Loan Journey Tracker
-
-![Loan Journey](./README-assets/journey-tracker.png)
-
-## Requirement Gathering
-
-![Requirements](./README-assets/requirements.png)
-
-## KYC Verification
-
-![KYC](./README-assets/kyc.png)
-
-## Underwriting Assessment
-
-![Underwriting](./README-assets/underwriting.png)
-
-## Decision Explanation
-
-![Decision](./README-assets/decision.png)
-
-## Loan Sanction Letter
-
-![Sanction](./README-assets/sanction.png)
-
----
-
 # Key Highlights
 
 ✔ Multi-Agent AI Architecture
